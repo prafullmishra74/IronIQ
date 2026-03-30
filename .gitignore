@@ -1,1 +1,10 @@
+<<<<<<< HEAD
 .vercel
+=======
+node_modules/
+.env
+*.xlsx
+*.docx
+hashtest.js
+verifytest.js
+>>>>>>> 3b3f69876ef155b4ab64823432b9982eb728336f
