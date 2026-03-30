@@ -1,0 +1,233 @@
+[
+  {
+    "sno": 1,
+    "param": "Cold Blast Flow",
+    "unit": "NM3/Hr",
+    "lower": 82000.0,
+    "upper": 93000.0
+  },
+  {
+    "sno": 2,
+    "param": "Hot Blast Pressure",
+    "unit": "Kg/Cm2",
+    "lower": 2.5,
+    "upper": 2.9
+  },
+  {
+    "sno": 3,
+    "param": "Hot Blast Temperature-1",
+    "unit": "Deg C",
+    "lower": 1044.941,
+    "upper": 1176.779
+  },
+  {
+    "sno": 4,
+    "param": "Hot Blast Temperature-2",
+    "unit": "Deg C",
+    "lower": 1031.734,
+    "upper": 1168.948
+  },
+  {
+    "sno": 5,
+    "param": "Oxygen Enrichment Flow",
+    "unit": "NM3/Hr",
+    "lower": 5000.0,
+    "upper": 6000.0
+  },
+  {
+    "sno": 6,
+    "param": "Humidification",
+    "unit": "gm/NM3",
+    "lower": 19.095,
+    "upper": 36.54
+  },
+  {
+    "sno": 7,
+    "param": "Uptake Temp.1",
+    "unit": "Deg C",
+    "lower": 66.785,
+    "upper": 157.395
+  },
+  {
+    "sno": 8,
+    "param": "Uptake Temp.2",
+    "unit": "Deg C",
+    "lower": 66.595,
+    "upper": 157.395
+  },
+  {
+    "sno": 9,
+    "param": "Uptake Temp.3",
+    "unit": "Deg C",
+    "lower": 66.69,
+    "upper": 157.185
+  },
+  {
+    "sno": 10,
+    "param": "Uptake Temp.4",
+    "unit": "Deg C",
+    "lower": 66.69,
+    "upper": 155.925
+  },
+  {
+    "sno": 11,
+    "param": "Top Pressure-1",
+    "unit": "Kg/Cm2",
+    "lower": 1.2,
+    "upper": 1.45
+  },
+  {
+    "sno": 12,
+    "param": "Top Pressure-2",
+    "unit": "Kg/Cm2",
+    "lower": 1.2,
+    "upper": 1.45
+  },
+  {
+    "sno": 13,
+    "param": "Top Pressure-3",
+    "unit": "Kg/Cm2",
+    "lower": 1.2,
+    "upper": 1.45
+  },
+  {
+    "sno": 14,
+    "param": "Top Pressure-4",
+    "unit": "Kg/Cm2",
+    "lower": 1.2,
+    "upper": 1.45
+  },
+  {
+    "sno": 15,
+    "param": "RAFT",
+    "unit": "Deg C",
+    "lower": 2098.877,
+    "upper": 2393.729
+  },
+  {
+    "sno": 16,
+    "param": "Furnace Total Dp",
+    "unit": "Kg/Cm2",
+    "lower": 1.1,
+    "upper": 1.4
+  },
+  {
+    "sno": 17,
+    "param": "Furnace Lower Dp",
+    "unit": "Kg/Cm2",
+    "lower": 0.477,
+    "upper": 0.735
+  },
+  {
+    "sno": 18,
+    "param": "Furnace Middle Dp",
+    "unit": "Kg/Cm2",
+    "lower": 0.191,
+    "upper": 0.42
+  },
+  {
+    "sno": 19,
+    "param": "Furnace Upper Dp",
+    "unit": "Kg/Cm2",
+    "lower": 0.144,
+    "upper": 0.365
+  },
+  {
+    "sno": 20,
+    "param": "BFGas Generation",
+    "unit": "NM3/Hr",
+    "lower": 110000.0,
+    "upper": 135000.0
+  },
+  {
+    "sno": 21,
+    "param": "CWI",
+    "unit": "\u2014",
+    "lower": 0.665,
+    "upper": 1.153
+  },
+  {
+    "sno": 22,
+    "param": "PWI",
+    "unit": "\u2014",
+    "lower": 0.855,
+    "upper": 1.362
+  },
+  {
+    "sno": 23,
+    "param": "SGI Heat Flux - Q1",
+    "unit": "\u2014",
+    "lower": 475.095,
+    "upper": 725.519
+  },
+  {
+    "sno": 24,
+    "param": "SGI Heat Flux - Q2",
+    "unit": "\u2014",
+    "lower": 480.539,
+    "upper": 730.646
+  },
+  {
+    "sno": 25,
+    "param": "SGI Heat Flux - Q3",
+    "unit": "\u2014",
+    "lower": 475.095,
+    "upper": 734.895
+  },
+  {
+    "sno": 26,
+    "param": "SGI Heat Flux - Q4",
+    "unit": "\u2014",
+    "lower": 475.475,
+    "upper": 731.194
+  },
+  {
+    "sno": 27,
+    "param": "Total Heat Flux",
+    "unit": "\u2014",
+    "lower": 1425.57,
+    "upper": 2099.265
+  },
+  {
+    "sno": 28,
+    "param": "ABP-1 Temp.",
+    "unit": "Deg C",
+    "lower": 60.0,
+    "upper": 150.0
+  },
+  {
+    "sno": 29,
+    "param": "ABP-2 Temp.",
+    "unit": "Deg C",
+    "lower": 50.0,
+    "upper": 160.0
+  },
+  {
+    "sno": 30,
+    "param": "ABP-3 Temp.",
+    "unit": "Deg C",
+    "lower": 50.0,
+    "upper": 180.0
+  },
+  {
+    "sno": 31,
+    "param": "ABP-4 Temp.",
+    "unit": "Deg C",
+    "lower": 50.0,
+    "upper": 180.0
+  },
+  {
+    "sno": 32,
+    "param": "ABP-5 Temp.",
+    "unit": "Deg C",
+    "lower": 50.0,
+    "upper": 180.0
+  },
+  {
+    "sno": 33,
+    "param": "ABP-7 Temp.",
+    "unit": "Deg C",
+    "lower": 70.0,
+    "upper": 200.0
+  }
+]

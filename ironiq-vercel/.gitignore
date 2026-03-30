@@ -1,0 +1,18 @@
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.production
+
+# Vercel
+.vercel/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+.vercel
+.env*.local
