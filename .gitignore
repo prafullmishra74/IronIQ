@@ -1,10 +1,18 @@
-<<<<<<< HEAD
-.vercel
-=======
-node_modules/
+# Environment variables — NEVER commit these
 .env
-*.xlsx
-*.docx
-hashtest.js
-verifytest.js
->>>>>>> 3b3f69876ef155b4ab64823432b9982eb728336f
+.env.local
+.env.production
+
+# Vercel
+.vercel/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+.vercel
+.env*.local

@@ -1,7 +1,13 @@
-FROM node:20-slim
+FROM node:18
+
 WORKDIR /app
+
 COPY package*.json ./
-RUN npm install --production
+RUN npm install
+
 COPY . .
+
+ENV PORT=8080
 EXPOSE 8080
-CMD ["node", "ironiq_server.js"]
+
+CMD ["npm", "start"]
