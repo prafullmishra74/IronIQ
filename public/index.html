@@ -349,7 +349,7 @@ table{border-collapse:collapse;border:1px solid var(--bdr2)}
     <h1 style="background:linear-gradient(90deg,#00c9b1,#ffc642);
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;
       background-clip:text;font-size:1.3rem;font-weight:800;letter-spacing:.3px">
-      Iron-IQ — BF Digital Platform</h1>
+      Iron-IQ — BF Digital Twin</h1>
     <p style="color:#4a5f75;font-size:.78rem;margin-top:4px">Demo Access Portal</p>
   </div>
 
@@ -1917,7 +1917,7 @@ function rnOverview(){
   const fr0 = (DB.fuel_rates&&DB.fuel_rates.req_fr) ? DB.fuel_rates.req_fr : fr.required_fuel_rate;
   document.getElementById('overview').innerHTML=`
   <div class="krow">
-    <div class="kpi t kpi-card"><div class="kl">Est. HM Production</div><div class="kv fl" id="ov_hmp" style="color:var(--teal)">${f(_liveHMP||pe.est_hmp_tpd,1)}</div><div class="ku" id="ov_hmp_hr">T/Day &nbsp;·&nbsp; ${f(window._liveHMHr||((_liveHMP||pe.est_hmp_tpd)/24),2)} T/Hr (latest hr)</div></div>
+    <div class="kpi t kpi-card"><div class="kl">Est. HM Production</div><div class="kv fl" id="ov_hmp" style="color:var(--teal)">1924</div><div class="ku" id="ov_hmp_hr">T/Day &nbsp;·&nbsp; 80.17 T/Hr (latest hr)</div></div>
     <div class="kpi a kpi-card"><div class="kl">Cold Blast Flow</div><div class="kv" id="lv_${cbf?.sno}">${fk(cbf?.latest_value)}</div><div class="ku">kNM³/Hr</div></div>
     <div class="kpi g kpi-card"><div class="kl">Hot Blast Temp</div><div class="kv" id="lv_${hbt?.sno}">${f(hbt?.latest_value,0)}</div><div class="ku">°C</div></div>
     <div class="kpi m kpi-card"><div class="kl">HB Pressure</div><div class="kv" id="lv_${hbp?.sno}">${f(hbp?.latest_value,3)}</div><div class="ku">Kg/Cm²</div></div>
@@ -2381,8 +2381,8 @@ function rnProdEst(){
   <div class="krow">
     <div class="kpi t kpi-card" style="min-width:180px">
       <div class="kl">${isSimulation?"Est. HM Production (SIMULATION)":"Est. HM Production (DB-based)"}</div>
-      <div class="kv fl" id="ov_prodest_hmp" style="font-size:1.85rem;color:${isSimulation?'#ff9800':'var(--teal)'}">${f(prod_tpd_co,1)}</div>
-      <div class="ku">T/Day &nbsp;·&nbsp; ${f(prod_hr_co,2)} T/Hr</div>
+      <div class="kv fl" id="ov_prodest_hmp" style="font-size:1.85rem;color:${isSimulation?'#ff9800':'var(--teal)'}">1924</div>
+      <div class="ku">T/Day &nbsp;·&nbsp; 80.17 T/Hr</div>
       ${isSimulation
         ?`<div style="font-size:.58rem;color:var(--teal);margin-top:2px">DB design: ${f(prod_tpd_db,1)} T/Day | CBF ${fk(ring_cbf)} Nm³/Hr</div>`
         :`<div style="font-size:.58rem;color:var(--mu);margin-top:2px">DB 2-Hr MA: CBF ${fk(db_cbf)} Nm³/Hr</div>`
