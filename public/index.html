@@ -1617,11 +1617,7 @@ function _rebuildHourlyLog() {
   window._liveHMP  = parseFloat(total_hm_24hr.toFixed(1));
   window._liveHMHr = parseFloat(newLog[0].hm_prod.toFixed(3));
 
-  // Live-update overview KPI in-place if it's currently visible
-  var kvEl = document.getElementById('ov_hmp');
-  var hrEl = document.getElementById('ov_hmp_hr');
-  if (kvEl)  kvEl.textContent = total_hm_24hr.toFixed(1);
-  if (hrEl)  hrEl.textContent = 'T/Day \u00b7 ' + (total_hm_24hr/24).toFixed(2) + ' T/Hr (latest hr)';
+  // Est. HM Production is hardcoded — overview KPI not updated dynamically
 }
 
 function rnChargeSeq(){
