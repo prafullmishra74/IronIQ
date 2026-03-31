@@ -932,11 +932,7 @@ function refreshVisibleMA(){
   // Overview KPIs update every 5s (live blast values) — re-compute production
   if(id==='overview'){
     rnProdEst(); // update _liveHMP (24hr charge seq sum)
-    // Update production KPI in-place (no full re-render)
-    const kvEl  = document.getElementById('ov_hmp');
-    const hrEl  = document.getElementById('ov_hmp_hr');
-    if(kvEl  && window._liveHMP!=null)  kvEl.textContent  = window._liveHMP.toFixed(1);
-    if(hrEl  && window._liveHMHr!=null) hrEl.textContent  = 'T/Day · ' + window._liveHMHr.toFixed(2) + ' T/Hr (latest hr)';
+    // Est. HM Production is hardcoded — do not update ov_hmp dynamically
   }
   // shaft and fuelopt refresh every 60s (use charge seq 2-hr avg)
   const slowIds2 = {shaft:60000, fuelopt:60000};
@@ -2137,8 +2133,7 @@ function rnParams5s(){
     // Refresh prod estimator so CBF display updates immediately
     if(typeof rnProdEst === 'function') rnProdEst();
     // Refresh overview production display
-    const kvEl = document.getElementById('ov_hmp');
-    if(kvEl && window._liveHMP != null) kvEl.textContent = window._liveHMP.toFixed(1);
+    // Est. HM Production is hardcoded — not updated here
   };
   window.p5SaveAll = function(){
     // Read ALL current input values and save to both storages
@@ -2174,8 +2169,7 @@ function rnParams5s(){
     rnMA1day();
     if(document.getElementById('tbl_live5s')) renderLive5sTable();
     if(typeof rnProdEst === 'function') rnProdEst();
-    const kvEl2 = document.getElementById('ov_hmp');
-    if(kvEl2 && window._liveHMP != null) kvEl2.textContent = window._liveHMP.toFixed(1);
+    // Est. HM Production is hardcoded — not updated here
   };
   window.p5ApplyAll = function(){
     // Save current inputs silently then apply to all sheets
