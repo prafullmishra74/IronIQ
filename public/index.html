@@ -2682,13 +2682,80 @@ function calcBurden(){
   sv('out_mgo',sio2_in>0?mgo_in/sio2_in*100:0,1);
   sv('out_throat_area',th_area,2);sv('out_belly_area',bl_area,2);
   sv('out_prod_idx',tprod/bl_area,2);sv('out_chg_day',chr*24,0);
-  const svb=(id,v,d=1)=>{const el=document.getElementById(id);if(el)el.textContent=typeof v==='number'?v.toFixed(d):(v||'—');};
-  svb('bv_coke_base',coke_base);svb('bv_coke1',coke1);svb('bv_coke2',coke2);
-  svb('bv_nc',nc*hm_per_charge,1);svb('bv_sinter',sinter_kg,1);svb('bv_ore',ore_kg,1);
-  svb('bv_pellet',pellet_kg,1);svb('bv_dri',dri_kg,1);svb('bv_ore_total',total_ore_kg,1);
-  svb('bv_total',charge_vol,2);svb('bv_coke_vol',coke_vol,2);svb('bv_ore_vol',ore_vol,2);
-  svb('bv_hm',hm_per_charge,3);svb('bv_slag',hm_per_charge*slag_kg/1000,3);
-  svb('bv_ib2',ib2,3);svb('bv_ib3',ib3,3);
+ const svb=(id,v,d=1)=>{const el=document.getElementById(id);if(el)el.textContent=typeof v==='number'?v.toFixed(d):(v||'—');};
+
+  // ── Burden / Charge quantities ──
+  svb('bv_coke_base', coke_base, 0);
+  svb('bv_coke1',     coke1,     0);
+  svb('bv_coke2',     coke2,     0);
+  svb('bv_nc',        nc * hm_per_charge, 1);
+  svb('bv_sinter',    sinter_kg,  1);
+  svb('bv_ore',       ore_kg,     1);
+  svb('bv_pellet',    pellet_kg,  1);
+  svb('bv_dri',       dri_kg,     1);
+  svb('bv_ls',        ls_kg,      1);
+  svb('bv_dol',       dl_kg,      1);
+  svb('bv_coal',      pci * hm_per_charge, 1);
+  svb('bv_quartz',    Math.max(0, (sio2_in>0 ? cao_tot/(g('in_b2')||D.b2_set||1.1) - sio2_in : 0)), 1);
+  svb('bv_total',     total_ore_kg + coke_base, 0);
+
+  // ── SLAG CHEMISTRY ── (matches Excel 'calculation' sheet)
+  // CaO=36.66%, SiO2=33.33%, Al2O3=18.50%, MgO=8.72%, B2=1.100, B3=1.362
+  const slag_total = sio2_in + cao_tot + mgo_in + al2o3_in;
+  const cao_pct    = slag_total > 0 ? cao_tot   / slag_total * 100 : 0;
+  const sio2_pct   = slag_total > 0 ? sio2_in   / slag_total * 100 : 0;
+  const al2o3_pct  = slag_total > 0 ? al2o3_in  / slag_total * 100 : 0;
+  const mgo_pct    = slag_total > 0 ? mgo_in    / slag_total * 100 : 0;
+  svb('sv_cao',   cao_pct,  2);
+  svb('sv_sio2',  sio2_pct, 2);
+  svb('sv_al2o3', al2o3_pct,2);
+  svb('sv_mgo',   mgo_pct,  2);
+  svb('sv_b2',    ib2,      3);
+  svb('sv_ib3',   ib3,      3);
+
+  // Update slag pie with live values
+  if(charts['sp']){
+    charts['sp'].data.datasets[0].data = [
+      +cao_pct.toFixed(2), +sio2_pct.toFixed(2), +al2o3_pct.toFixed(2),
+      +mgo_pct.toFixed(2), +Math.max(0, 100-cao_pct-sio2_pct-al2o3_pct-mgo_pct).toFixed(2)
+    ];
+    charts['sp'].update('none');
+  }
+
+  // ── VOLUMES & LAYERS ── (matches Excel 'Oxide vol' sheet)
+  // Ore density = 1.8 t/m³, Coke density = 0.5 t/m³
+  // Throat Dia=5m → area=19.635m², Coke layer=509mm, Ore layer=592mm
+  const throat_dia   = g('in_throat_dia') || D.throat_dia || 5.0;
+  const throat_area  = Math.PI * (throat_dia / 2) ** 2;
+  const ore_vol_m3   = total_ore_kg / 1000 / 1.8;
+  const coke_vol_m3  = coke_base    / 1000 / 0.5;
+  const charge_vol   = ore_vol_m3 + coke_vol_m3;
+  const coke_layer_mm = throat_area > 0 ? (coke_vol_m3 / throat_area) * 1000 : 0;
+  const ore_layer_mm  = throat_area > 0 ? (ore_vol_m3  / throat_area) * 1000 : 0;
+  svb('vv_oxide',      ore_vol_m3,    2);
+  svb('vv_coke',       coke_vol_m3,   2);
+  svb('vv_ore',        ore_vol_m3,    2);
+  svb('vv_charge',     charge_vol,    2);
+  svb('vv_coke_layer', coke_layer_mm, 1);
+  svb('vv_ore_layer',  ore_layer_mm,  1);
+
+  // ── CHARGE VISUALISATION ──
+  const oreW = charge_vol > 0 ? (ore_vol_m3  / charge_vol * 100).toFixed(1) : 50;
+  const cokW = charge_vol > 0 ? (coke_vol_m3 / charge_vol * 100).toFixed(1) : 50;
+  const cvEl = document.getElementById('charge-viz');
+  if(cvEl) cvEl.innerHTML =
+    `<div class="cv-ore"  style="width:${oreW}%">${oreW}% Ore</div>` +
+    `<div class="cv-coke" style="width:${cokW}%">${cokW}% Coke</div>`;
+
+  // Update burden pie with live values
+  if(charts['bp']){
+    charts['bp'].data.datasets[0].data = [
+      +sinter_kg.toFixed(0), +ore_kg.toFixed(0), +pellet_kg.toFixed(0),
+      +coke_base.toFixed(0), +(nc*hm_per_charge).toFixed(0),
+      +Math.max(0,(sio2_in>0?cao_tot/(g('in_b2')||D.b2_set||1.1)-sio2_in:0)).toFixed(0)
+    ];
+    charts['bp'].update('none');
+  }
   window._burdenCalc={coke_base,coke1_kg:coke1,coke2_kg:coke2,sinter_kg,ore_kg,pellet_kg,
     dri_kg,total_ore_kg,hm_per_charge,coke_rate,pci_rate:pci,fuel_rate,charges_hr:chr,
     slag_rate_kg:slag_kg,ore_coke:oc,ts:Date.now()};
