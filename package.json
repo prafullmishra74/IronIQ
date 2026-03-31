@@ -2,7 +2,7 @@
   "name": "ironiq-bf-platform",
   "version": "1.0.0",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "express": "^4.18.2"
