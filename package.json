@@ -1,15 +1,10 @@
 {
-  "name": "ironiq-app",
+  "name": "ironiq-bf-platform",
   "version": "1.0.0",
-  "description": "IronIQ Cloud Run App",
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.19.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "jsonwebtoken": "^9.0.2"
+    "express": "^4.18.2"
   }
 }

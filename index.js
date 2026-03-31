@@ -1,22 +1,20 @@
-const express = require("express");
-const cors = require("cors");
-require("dotenv").config();
+const express = require('express');
+const path = require('path');
 
 const app = express();
-
-app.use(cors({
-  origin: process.env.ALLOWED_ORIGIN || "*"
-}));
-
-app.use(express.json());
-app.use(express.static("public"));
-
-app.get("/api/test", (req, res) => {
-  res.json({ message: "API working" });
-});
-
 const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.use(express.json());
+
+app.post('/api/auth',  require('./api/auth'));
+app.get ('/api/data',  require('./api/data'));
+app.get ('/api/db',    require('./api/db'));
+app.post('/api/score', require('./api/score'));
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
+app.listen(PORT, () => console.log(`Iron-IQ listening on port ${PORT}`));
